@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume for Scoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/front.css') }}">
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload Your Resume for Scoring</h1>
+        <form action="{{ url_for('score_resume') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="pdf_file" accept="application/pdf" class="file-input">
+            <input type="submit" value="Score Resume" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>

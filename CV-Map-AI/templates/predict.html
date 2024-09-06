@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Page</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/predict.css') }}">
+</head>
+<body>
+  <video id="background-video" autoplay muted loop>
+    <source src="{{ url_for('static', filename='assets/predict.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div id="content-container">
+    <div>
+      <img class="image" src="{{ url_for('static', filename='assets/predict.png') }}" alt="Image">
+    </div>
+  </div>
+  <div id="text-container" class="centered-text">
+    <p>
+      Upload your Document in PDF file and let the magic happen. You will get some questions based on your Document.
+    </p>
+  </div>
+  <form id="upload-section" action="/test_generate" method="post" enctype="multipart/form-data">
+    <input class="uploadbutton" type="file" name="pdf_file" id="pdf-upload" accept=".pdf">
+    <input type="submit" class="uploadbutton" id="submit-button" value="Generate">
+  </form>
+
+  <div id="chat-section" class="container">
+    {% if cresults %}
+      {% for question in cresults %}
+        <div class="question">
+          <p>{{ question }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No questions generated.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>
